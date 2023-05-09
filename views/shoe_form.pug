@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='' enctype='multipart/form-data')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text', placeholder='Name of shoe', name='name', required='true', value=(undefined===shoe ? '' : shoe.name))
+    div.form-group
+      label(for='description') Description:
+      textarea#summary.form-control(type='textarea', placeholder='Description', name='description', required='true') #{undefined===shoe ? '' : shoe.description}
+    div.form-group
+      label Upload Picture:&nbsp;&nbsp;
+      input(type='file' name='image')
+    button.btn.btn-primary(type='submit') Submit
+  </form>
+
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+
+
+
