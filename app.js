@@ -11,17 +11,37 @@ var fs = require('fs');
 var path = require('path');
 // var fileUpload = require('express-fileupload');
 var multer = require('multer');
+var LocalStrategy = require('passport-local');
+var bodyParser = require('body-parser');
 
 var SQLiteStore = require('connect-sqlite3')(session);
 
 var landingRouter = require('./routes/landing');
-var authRouter = require('./routes/auth');
+// var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
 var catalogRouter = require('./routes/catalog');
 var aboutRouter = require('./routes/about');
+var authenticationRouter = require('./routes/authentication');
 
 var app = express();
+
+app.use(require("express-session")({
+  secret: "secret",
+  resave: false,
+  saveUninitialized: false
+}));
+
+// app.use(express.bodyParser());
+app.use(express.json());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+var User = require('./models/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Set up mongoose connection
 mongoose.set('strictQuery', false);
@@ -36,24 +56,27 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
 // app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
-}));
+
+// app.use(session({
+//   secret: 'keyboard cat',
+//   resave: false,
+//   saveUninitialized: false,
+//   store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+// }));
 
 app.use(passport.authenticate('session'));
 
 app.use('/', landingRouter);
 app.use('/home', indexRouter);
-app.use('/', authRouter);
+app.use('/', authenticationRouter);
+// app.use('/', authRouter);
 app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);
 app.use('/about', aboutRouter);
@@ -73,6 +96,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// app.use(passport.initialize());
+// app.use(passport.session)
 
 // const Shoe = require('./models/shoe');
 // const shoeExample = new Shoe({

@@ -1,0 +1,1 @@
+Initially had used passport but switched to passport-local-mongoose so I could handle having users create comments for shoes.

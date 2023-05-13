@@ -1,15 +1,11 @@
 extends layout
 
 block content
-  p Welcome #{username}!
+  p(class="lead home-text") Welcome <span class="username">#{username}</span>!
 
-  p SneakerReview is the one-stop destination for exploring and discussing the latest sneakers!
+  p(class="lead home-text") SneakerReview is the one-stop destination for exploring and discussing the latest sneakers!
 
-  div.carouselExampleIndicators.carousel.slide(data-ride="carousel")
-    ol.carousel-indicators
-      li.active(data-target="#carouselExampleIndicators", data-slide-to="0")
-      li(data-target="#carouselExampleIndicators", data-slide-to="1")
-      li(data-target="#carouselExampleIndicators", data-slide-to="2")
+  div(class="carousel slide" data-bs-ride="carousel")
     div.carousel-inner
       div.carousel-item.active
         img.d-block.w-100(src="images/shoe_images/slideshow_image_1.jpg", alt="First slide")

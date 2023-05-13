@@ -1,46 +1,11 @@
 extends layout
 
 block content
-  each shoe, index in shoe_list
-    if index % 2 == 0
-      div(class="row")
-        div(class="col-sm-6")
-          ul(class="list-group")
-            li(class="list-group-item") #{index} #{shoe.name}
-              img(src=`/images/shoe_images/jordan4.jpeg`)
-        - continue
-    div(class="col-sm-6")
-      ul(class="list-group")
-        li(class="list-group-item") #{index} #{shoe.name}
-          img(src=`/images/shoe_images/jordan4.jpeg`)
-
-
-  //- ul(class="shoes_list")
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //-   li
-  //-     img(src=`/images/shoe_images/jordan4.jpeg`)
-  //- ul
-  //-   each shoe, index in shoe_list
-  //-     if index % 2 === 0
-  //-       li.row
-  //-         //- a #{shoe.name}
-  //-         img(class="shoe", src=`/images/shoe_images/jordan4.jpeg`)
-  //-     else
-  //-       li.row
-  //-         img(class="shoe", src=`/images/shoe_images/jordan4.jpeg`)
-
-    //- else
-    //-   li There are no shoes.
+  div(class="flex-container shoe-list")
+    each shoe,index in shoe_list
+      div(class="list-item-container")
+        a(class="item-name" href=shoe.url) #{shoe.name}
+        ul(class="list-group complete-shoe-list")
+          li(class="list-group-item complete-shoe-list")
+            div(class="list-img-container")
+              img(class="shoe-list-items" src=`/images/shoe_images/` + shoe.image)

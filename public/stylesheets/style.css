@@ -3,18 +3,51 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+body.layout {
+  background-color: #B2BEB5;
+}
+
 .header {
   display: flex;
   justify-content: left;
   align-items: center;
   margin-top: -3vh;
-  margin-bottom: 2vh;
+  margin-bottom: 0vh;
   gap: 10px;
   /* position: ; */
 }
 
+h1.main-display {
+  font-family: 'Montserrat';
+  color: #433fc0;
+}
+
+h1 {
+  font-family: 'Montserrat';
+}
+
+h1.landing-page-header {
+  color: #433fc0;
+}
+
+h1.about {
+  font-family: 'Montserrat';
+}
+
+h2, h3 {
+  font-family: 'Montserrat';
+}
+
+p {
+  font-family: 'Montserrat';
+}
+
 a {
-  color: #00B7FF;
+  font-family: 'Montserrat';
+}
+
+span.username {
+  color: #433fc0;
 }
 
 i.bi.bi-chat-text {
@@ -27,35 +60,246 @@ i.bi.bi-chat-text {
   gap: 1rem;
 }
 
-/* img {
-  display: inline-block;
+/* Home Page Styling */
+div.home-page-text-container {
+  border-radius: 1rem;
+  margin-bottom: 1vh;
+}
+
+p.home-text {
+  font-family: 'Montserrat';
+}
+
+/* div.carousel-item {
+  height: 60vh;
+  width: 70vh;
 } */
 
-.my-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* layout styling */
+
+nav.navbar.layout-bar {
+  margin-bottom: 2vh;
+  margin-left: 0vh;
+  border-radius: 1rem;
 }
 
-.my-list li {
+div.navbar-collapse {
+  padding-left: 0;
+  /* margin-left: -1vh; */
+}
+
+ul.navbar-nav {
+  display:flex;
+}
+
+a.nav-link {
+  color: white;
+}
+
+li.logout-list-item {
+  float: right;
+  /* text-align: right; */
+}
+
+
+/* catalog styling */
+
+div.shoe-list {
+  display:flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+}
+
+div.list-item-container {
+  margin: 1%;
+  height: 50vh;
+  width: 50vh;
+  position: relative;
+  text-align: center;
+}
+
+a.item-name {
   display: inline-block;
-  width: calc(50% - 5px);
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 1.05em;
 }
 
-.navbar-column {
-  border: 8px solid #ccc;
-  padding: 5px;
-  border-radius: 10px;
-  padding-right: 0px;
-  height: fit-content;
-  /* position: fixed; */
+ul.list-group.complete-shoe-list {
+  /* height: 250px;
+  width: 450px; */
+  height: 95%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  border-radius: 1em;
+  /* margin: 1%; */
 }
 
-#carousel-inner {
-  border: 5px solid black;
+li.list-group-item {
+  height:100%;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  /* padding-bottom: 2rem; */
 }
 
+div.list-img-container {
+  /* height:220px;
+  width: 400px; */
+  height:100%;
+  width: 100%;
+  display: flex;
+}
+
+img.shoe-list-items {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+  align-items: center;
+}
+
+
+
+/* Shoe Detail Page Styling */
+
+div.flexbox-container {
+  display: flex;
+}
+
+h1.shoe-detail {
+  padding: 1%;
+}
+
+div.shoe-detail-container {
+  display: flex;
+  justify-content: left;
+  width: 50%;
+  border-radius: 1em;
+}
+
+div.shoe-detail-elements {
+  padding: 1%;
+}
+
+div.shoe-image-container {
+  padding: 1%;
+}
+
+img.shoe-image {
+  border-radius: 1em;
+}
+
+div.comment-form {
+  padding: 1%;
+}
+
+label.shoe-detail-comment-box {
+  font-family: 'Montserrat';
+}
+
+div.comments-list-container {
+  /* display:flex; */
+  border-radius: 1em;
+  margin-top: 1%;
+  width: 75%;
+}
+
+.comments-list {
+  padding-top: 1vh;
+}
+
+.comments.list-group {
+  margin-top: 0.25vh;
+  padding: 1%;
+}
+
+p.username-of-commenter {
+  font-weight: bold;
+  padding-left: 0.5vh;
+}
+
+.commenter {
+  display: inline-block;
+}
+
+div.shoe-image-container {
+  height: 400px;
+  width: 600px;
+}
+
+img.shoe-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* Add Shoe Page Styling */
+
+h1.shoe-form {
+  text-align: center;
+}
+
+div.shoe-form-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form.shoe-form {
+  padding: 1%;
+  margin: auto;
+}
+
+/* Styling for LogIn and SignUp Pages */
+
+body.sign-in-page {
+  background-color: #B2BEB5;
+}
+
+div.header-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5vh;
+}
+
+div.sign-in-form-container {
+  display: flex;
+  justify-content: center;
+  height: 50vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  /* width: 60vw; */
+  border-radius: 1rem;
+}
+
+form.sign-in-form {
+  margin: auto;
+  width: 50%;
+}
+
+button.login-text {
+  font-family: 'Montserrat';
+}
+
+h1.sign-in {
+  font-family: 'Montserrat';
+}
+
+p.login-text {
+  font-family: 'Montserrat';
+}
+
+a.login-text {
+  font-family: 'Montserrat';
+}
+
+nav.sign-in-page {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
