@@ -13,19 +13,27 @@ router.get('/signup', function(req, res, next) {
   res.render('signup');
 })
 
+
+// route handler for POST request to the '/signup' endpoint
 router.post('/signup', function(req, res, next) {
+
+  // Retrieve the username and password from the request body and place them into a newUser object
   var username = req.body.username;
   var password = req.body.password;
-
   var newUser = {username: username, password: req.body.password};
 
+  // Register the user
   user.register(newUser, password, function(err, newUser) {
+    // callback function first checks is there is an error from the registration process. If so the error
+    // is logged and the user is returned to the '/signup' page
     if (err) {
       console.log(err);
       return res.redirect('/signup');
     }
 
+    // if registration is succesful, the newly registered user is authenticated
     passport.authenticate('local')(req, res, function() {
+      // if authentication is succesful, redirect the user to the '/home' page
       console.log(newUser);
       res.redirect('/home');
     });
@@ -56,15 +64,6 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-// router.post('/login/password', passport.authenticate("local",
-//         {
-//             successRedirect:"/home",
-//             failureRedirect: "/"
-//         }), function(req, res){
-// });
-
-
-
 //==============
 //adding logout route
 router.post('/logout', function(req, res, next) {
@@ -73,7 +72,5 @@ router.post('/logout', function(req, res, next) {
     res.redirect('/');
   });
 });
-
-
 
 module.exports = router;

@@ -14,7 +14,10 @@ var multer = require('multer');
 var LocalStrategy = require('passport-local');
 var bodyParser = require('body-parser');
 
-var SQLiteStore = require('connect-sqlite3')(session);
+var compression = require("compression");
+var RateLimit = require("express-rate-limit");
+
+// var SQLiteStore = require('connect-sqlite3')(session);
 
 var landingRouter = require('./routes/landing');
 // var authRouter = require('./routes/auth');
@@ -26,13 +29,22 @@ var authenticationRouter = require('./routes/authentication');
 
 var app = express();
 
+app.use(compression());
+
+// Set up rate limiter: maximum of twenty requests per minute
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+// Apply rate limiter to all requests
+app.use(limiter);
+
 app.use(require("express-session")({
   secret: "secret",
   resave: false,
   saveUninitialized: false
 }));
 
-// app.use(express.bodyParser());
 app.use(express.json());
 
 app.use(passport.initialize());
@@ -45,7 +57,8 @@ passport.deserializeUser(User.deserializeUser());
 
 // Set up mongoose connection
 mongoose.set('strictQuery', false);
-const mongoDB = 'mongodb+srv://Jsingh23:Karan123@cluster0.tekbmn7.mongodb.net/game_store?retryWrites=true&w=majority';
+const dev_db_url = 'mongodb+srv://Jsingh23:Karan123@cluster0.tekbmn7.mongodb.net/game_store?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 main().catch(err => console.log(err));
 async function main() {
@@ -63,13 +76,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use(session({
-//   secret: 'keyboard cat',
-//   resave: false,
-//   saveUninitialized: false,
-//   store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
-// }));
 
 app.use(passport.authenticate('session'));
 
@@ -96,22 +102,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// app.use(passport.initialize());
-// app.use(passport.session)
-
-// const Shoe = require('./models/shoe');
-// const shoeExample = new Shoe({
-//   name: 'example shoe',
-//   image: './public/images/shoe_images/jordan4.jpeg',
-//   description: "Air Jordan 4"
-// });
-// shoeExample.save((err, shoe) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(shoe);
-//   }
-// });
 
 module.exports = app;

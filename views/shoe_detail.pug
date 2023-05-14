@@ -16,15 +16,15 @@ block content
             textarea#summary.form-control(type='textarea', placeholder='Comment here', name="comment", required='true')
           button.btn.btn-primary(type='submit') Submit
 
-  div(class="comments-list-container card")
-    div(class="comments-list")
-      each comment in shoe.comments
-        ul(class="comments list-group")
-          li(class="list-group-item")
-            i(class="bi bi-person-circle commenter")
-            p(class="username-of-commenter commenter") #{comment[0]}
-            p(class="username-comment-text") #{comment[1]}
-            //- a #{comment[1]} --------- Written by : #{comment[0]}
+  if (shoe.comments.length !== 0)
+    div(class="comments-list-container card")
+      div(class="comments-list")
+        each comment in shoe.comments
+          ul(class="comments list-group")
+            li(class="list-group-item")
+              i(class="bi bi-person-circle commenter")
+              p(class="username-of-commenter commenter") #{comment[0]}
+              p(class="username-comment-text") #{comment[1]}
 
   if errors
     ul
