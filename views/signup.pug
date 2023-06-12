@@ -31,18 +31,3 @@ html(lang="en")
 
     nav(class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom sign-in-page")
       p(class="login-text mx-auto") Website created by <a class="login-text" href="https://www.github.com/jsingh-23">Jaskaranpal Singh!</a>
-
-//
-    section.prompt
-      h1 Sign up
-      form(action="/signup", method="post")
-        section
-          label(for="username") Username
-          input#username.form-control(name="username", type="text", autocomplete="username", required)
-        section
-          label(for="new-password") Password
-          input#new-password.form-control(name="password", type="password", autocomplete="new-password", required)
-        button.btn.btn-primary(type="submit") Sign up
-      hr
-      p.help Already have an account?
-        a(href="/login")  Sign in

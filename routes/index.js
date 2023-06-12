@@ -8,12 +8,6 @@ var passport = require('passport');
 //   res.render('home', { username:req.user.username });
 // });
 
-// router.get('/', passport.authenticate('session', {
-//   failureRedirect: '/' // If the user is not logged in, redirect them to the landing page
-// }), function(req, res, next) {
-//   res.render('home', {username: req.user.username });
-// });
-
 router.get('/', function(req, res, next) {
   if (!req.user) {return res.redirect('/'); } // If the user is not logged in, redirect them to the landing page!
   next();

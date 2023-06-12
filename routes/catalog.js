@@ -29,17 +29,6 @@ const upload = multer({ storage: storage});
 var shoe_controller = require('../controllers/shoeController');
 var comment_controller = require('../controllers/commentController');
 
-
-// router.get('/', passport.authenticate('session', {
-//   failureRedirect: '/' // If the user is not logged in, redirect them to the landing page
-// }), function(req, res, next) {
-//   res.render('home', {username: req.user.username });
-// });
-
-// router.get('/', passport.authenticate('session', {
-//   failureRedirect: '/' // If the user is not logged in, redirect them to the landing page
-// }), shoe_controller.shoe_list);
-
 router.get('/', function(req, res, next) {
   if (!req.user) { return res.redirect('/'); } // If the user is not logged in, then redirect them to the landing page!
   next();

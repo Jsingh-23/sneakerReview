@@ -24,7 +24,7 @@ router.post('/signup', function(req, res, next) {
 
   // Register the user
   user.register(newUser, password, function(err, newUser) {
-    // callback function first checks is there is an error from the registration process. If so the error
+    // callback function checks if there is an error from the registration process. If so the error
     // is logged and the user is returned to the '/signup' page
     if (err) {
       console.log(err);
@@ -45,9 +45,6 @@ router.get('/login', function(req, res, next) {
   res.render('login', { user: req.user})
 });
 
-// router.post('/login', passport.authenticate('local'), function(req, res, next) {
-//   res.redirect('/home');
-// });
 
 router.post('/login', function(req, res, next) {
   // console.log(res);
